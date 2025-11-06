@@ -1,0 +1,101 @@
+.toggle {
+  // === Base ===
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+
+  &__checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      outline: none; // Extra safety for Firefox
+    }
+
+    &:focus + .toggle__slider {
+      box-shadow: none; // Remove your previous custom focus box-shadow
+    }
+
+    &:checked + .toggle__slider::before {
+      transform: translateX(26px);
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: #fff;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  }
+
+  // === States ===
+  &:hover .toggle__slider {
+    filter: brightness(0.95);
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .toggle__slider {
+      cursor: not-allowed;
+    }
+  }
+
+  // === Variants ===
+  &--default {
+    .toggle__checkbox:checked + .toggle__slider {
+      background-color: #999;
+    }
+  }
+
+  &--primary {
+    .toggle__checkbox:checked + .toggle__slider {
+      background-color: #2196f3;
+    }
+  }
+
+  &--secondary {
+    .toggle__checkbox:checked + .toggle__slider {
+      background-color: #6c757d;
+    }
+  }
+
+  &--success {
+    .toggle__checkbox:checked + .toggle__slider {
+      background-color: #28a745;
+    }
+  }
+
+  &--warning {
+    .toggle__checkbox:checked + .toggle__slider {
+      background-color: #ffc107;
+    }
+  }
+
+  &--danger {
+    .toggle__checkbox:checked + .toggle__slider {
+      background-color: #dc3545;
+    }
+  }
+}
